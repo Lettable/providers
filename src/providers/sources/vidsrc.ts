@@ -468,11 +468,11 @@ async function vidsrcScrape(ctx: MovieScrapeContext | ShowScrapeContext): Promis
         type: 'hls',
         playlist: m3u8Match[1],
         flags: [],
-        captions: [],
-        target: 'browser-extension',
+        captions: []
       },
     ],
     embeds: [],
+    target: 'browser-extension'
   };
 }
 
