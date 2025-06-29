@@ -467,7 +467,7 @@ async function vidsrcScrape(ctx: MovieScrapeContext | ShowScrapeContext): Promis
         id: 'vidsrc-cloudnestra',
         type: 'hls',
         playlist: `https://proxy.suized.to/?destination=${encodeURIComponent(m3u8Match[1])}`,
-        flags: [flags.CF_BLOCKED],
+        flags: [],
         captions: [],
       },
     ],
@@ -480,7 +480,7 @@ export const vidsrcScraper = makeSourcerer({
   name: 'Cloud Nestra 🔥',
   rank: 180,
   disabled: false,
-  flags: [flags.CF_BLOCKED],
+  flags: [],
   scrapeMovie: vidsrcScrape,
   scrapeShow: vidsrcScrape,
 });
