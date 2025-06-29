@@ -469,6 +469,7 @@ async function vidsrcScrape(ctx: MovieScrapeContext | ShowScrapeContext): Promis
         playlist: m3u8Match[1],
         flags: [],
         captions: [],
+        target: 'browser-extension',
       },
     ],
     embeds: [],
