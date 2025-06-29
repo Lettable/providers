@@ -467,7 +467,7 @@ async function vidsrcScrape(ctx: MovieScrapeContext | ShowScrapeContext): Promis
         id: 'vidsrc-cloudnestra',
         type: 'hls',
         playlist: m3u8Match[1],
-        flags: [],
+        flags: ['m3u8-proxy']
         captions: [],
       },
     ],
