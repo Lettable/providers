@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 import { flags } from '@/entrypoint/utils/targets';
-import { SourcererEmbed, SourcererOutput, makeSourcerer } from '@/providers/base';
+import { SourcererOutput, makeSourcerer } from '@/providers/base';
 import { MovieScrapeContext, ShowScrapeContext } from '@/utils/context';
 import { NotFoundError } from '@/utils/errors';
 import type { ShowMedia } from '@/entrypoint/utils/media';
-import cheerio from 'cheerio';
+import { createM3U8ProxyUrl } from '@/utils/proxy';
 
 var abc = String.fromCharCode(
   65,
@@ -406,6 +406,8 @@ async function vidsrcScrape(ctx: MovieScrapeContext | ShowScrapeContext): Promis
     ? `https://vidsrc.net/embed/tv?imdb=${imdbId}&season=${season}&episode=${episode}`
     : `https://vidsrc.net/embed/${imdbId}`;
 
+  ctx.progress(10);
+
   const embedHtml = await ctx.proxiedFetcher<string>(embedUrl, {
     headers: {
       Referer: 'https://vidsrc.net/',
@@ -413,36 +415,42 @@ async function vidsrcScrape(ctx: MovieScrapeContext | ShowScrapeContext): Promis
     },
   });
 
-  const $ = cheerio.load(embedHtml);
-  const iframeSrc = $('iframe#player_iframe').attr('src');
-  if (!iframeSrc) throw new NotFoundError('Initial iframe not found');
+  ctx.progress(30);
 
-  const rcpUrl = iframeSrc.startsWith('//') ? `https:${iframeSrc}` : iframeSrc;
+  // Extract the iframe source using regex
+  const iframeMatch = embedHtml.match(/<iframe[^>]*id="player_iframe"[^>]*src="([^"]*)"[^>]*>/);
+  if (!iframeMatch) throw new NotFoundError('Initial iframe not found');
+
+  const rcpUrl = iframeMatch[1].startsWith('//') ? `https:${iframeMatch[1]}` : iframeMatch[1];
+
+  ctx.progress(50);
 
   const rcpHtml = await ctx.proxiedFetcher<string>(rcpUrl, {
     headers: { Referer: embedUrl, 'User-Agent': 'Mozilla/5.0' },
   });
 
-  const $$ = cheerio.load(rcpHtml);
-  const scriptTag = $$('script')
-    .toArray()
-    .map((el) => $$(el).html() || '')
-    .find((s) => s.includes('prorcp'));
+  // Find the script with prorcp
+  const scriptMatch = rcpHtml.match(/src\s*:\s*['"]([^'"]+)['"]/);
+  if (!scriptMatch) throw new NotFoundError('prorcp iframe not found');
 
-  const prorcpMatch = scriptTag?.match(/src\s*:\s*['"]([^'"]+)['"]/);
-  if (!prorcpMatch?.[1]) throw new NotFoundError('prorcp iframe not found');
+  const prorcpUrl = scriptMatch[1].startsWith('/') ? `https://cloudnestra.com${scriptMatch[1]}` : scriptMatch[1];
 
-  const prorcpUrl = prorcpMatch[1].startsWith('/') ? `https://cloudnestra.com${prorcpMatch[1]}` : prorcpMatch[1];
+  ctx.progress(70);
 
   const finalHtml = await ctx.proxiedFetcher<string>(prorcpUrl, {
     headers: { Referer: rcpUrl, 'User-Agent': 'Mozilla/5.0' },
   });
 
-  const $$$ = cheerio.load(finalHtml);
-  const scriptWithPlayer = $$$('script')
-    .toArray()
-    .map((el) => $$$(el).html() || '')
-    .find((s) => s.includes('Playerjs'));
+  // Find script containing Playerjs
+  const scripts = finalHtml.split('<script');
+  let scriptWithPlayer = '';
+
+  for (const script of scripts) {
+    if (script.includes('Playerjs')) {
+      scriptWithPlayer = script;
+      break;
+    }
+  }
 
   if (!scriptWithPlayer) throw new NotFoundError('No Playerjs config found');
 
@@ -452,36 +460,37 @@ async function vidsrcScrape(ctx: MovieScrapeContext | ShowScrapeContext): Promis
   let streamUrl = m3u8Match[1];
 
   if (!streamUrl.includes('.m3u8')) {
-    const uMatch = scriptWithPlayer.match(/var\s+v\s*=\s*JSON\.parse\(decode\(\s*o\.u\s*\)\);/s);
-    if (!uMatch) throw new NotFoundError('Unable to decode encoded stream');
-
+    // Check if we need to decode the URL
     const v = JSON.parse(decode(o.u));
     streamUrl = mirza(streamUrl, v);
   }
 
   ctx.progress(90);
 
+  const headers = {
+    referer: 'https://cloudnestra.com/',
+    origin: 'https://cloudnestra.com',
+  };
+
   return {
     stream: [
       {
         id: 'vidsrc-cloudnestra',
         type: 'hls',
-        playlist: m3u8Match[1],
-        flags: [],
-        captions: []
+        playlist: createM3U8ProxyUrl(streamUrl, headers),
+        flags: [flags.CORS_ALLOWED],
+        captions: [],
       },
     ],
     embeds: [],
-    target: 'browser-extension'
   };
 }
 
 export const vidsrcScraper = makeSourcerer({
-  id: 'vidsrc-cloudnestra-1',
-  name: 'Cloud Nestra 🔥',
+  id: 'cloudnestra',
+  name: 'Cloudnestra',
   rank: 180,
-  disabled: false,
-  flags: [],
+  flags: [flags.CORS_ALLOWED],
   scrapeMovie: vidsrcScrape,
   scrapeShow: vidsrcScrape,
 });
