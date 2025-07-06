@@ -12,6 +12,8 @@ import { mp4hydraScraper } from '@/providers/sources/mp4hydra';
 import { tugaflixScraper } from '@/providers/sources/tugaflix';
 import { vidsrcsuScraper } from '@/providers/sources/vidsrcsu';
 import { vidsrcScraper } from '@/providers/sources/vidsrc';
+import { hexawatchScraper } from '@/providers/sources/hexawatch';
+
 
 import {
   autoembedBengaliScraper,
@@ -84,6 +86,7 @@ export function gatherAllSources(): Array<Sourcerer> {
     tugaflixScraper,
     ee3Scraper,
     vidsrcScraper,
+    hexawatchScraper,
     fsharetvScraper,
     vidsrcsuScraper,
     mp4hydraScraper,
