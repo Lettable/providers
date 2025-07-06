@@ -5,6 +5,7 @@ import { SourcererOutput, makeSourcerer } from '@/providers/base';
 import { MovieScrapeContext, ShowScrapeContext } from '@/utils/context';
 import { NotFoundError } from '@/utils/errors';
 import { createM3U8ProxyUrl } from '@/utils/proxy';
+import type { ShowMedia } from '@/entrypoint/utils/media';
 
 // 🔐 Encryption keys
 const Gl = "b21nIHlvdSBmb3VuZCBteSBrZXkgcGxlYXNlIGdvIHRvdWNoIGdyYXNzIHlvdSBsaXR0bGUgZmF0IGJhc2VtZW50IG1vbmtleQ=="; // omg you found my key please go touch grass you little fat basement monkey
@@ -144,15 +145,15 @@ async function hexawatchScrape(ctx: MovieScrapeContext | ShowScrapeContext): Pro
   if (!tmdbId) throw new NotFoundError('TMDB ID is required');
 
   const isShow = ctx.media.type === 'show';
-
+  
   const tmdbData = isShow
     ? {
         tmdbId,
-        seasonId: ctx.media.season?.number ?? '',
-        episodeId: ctx.media.episode?.number ?? '',
+        seasonId: (ctx.media as ShowMedia).season?.number ?? '',
+        episodeId: (ctx.media as ShowMedia).episode?.number ?? '',
       }
     : { tmdbId };
-
+  
   const xAuth = generateXAuth(isShow ? "tv" : "movie", tmdbData);
 
   const res = await ctx.proxiedFetcher("https://heartbeat.hexa.watch/", {
