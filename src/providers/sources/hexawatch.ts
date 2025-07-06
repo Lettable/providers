@@ -201,7 +201,7 @@ async function hexawatchScrape(ctx: MovieScrapeContext | ShowScrapeContext): Pro
 export const hexawatchScraper = makeSourcerer({
   id: 'hexawatch',
   name: 'HexaWatch 🔐',
-  rank: 200,
+  rank: 203,
   flags: [flags.CORS_ALLOWED],
   scrapeMovie: hexawatchScrape,
   scrapeShow: hexawatchScrape,
