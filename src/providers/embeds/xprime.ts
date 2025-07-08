@@ -25,11 +25,17 @@ function embed(provider: { id: string; name: string; rank: number; serverName: s
     name: provider.name,
     rank: provider.rank,
     async scrape(ctx) {
-      const title = encodeURIComponent(ctx.media.title);
-      const year = ctx.media.year;
+      // Parse URL to get title and year
+      const [title, year] = ctx.url.split('|');
       
-      const apiUrl = `https://backend.xprime.tv/${provider.serverName}?name=${title}&year=${year}`;
+      if (!title || !year) {
+        throw new Error('Invalid xprime URL format');
+      }
+
+      // Construct API URL
+      const apiUrl = `https://backend.xprime.tv/${provider.serverName}?name=${encodeURIComponent(title)}&year=${year}`;
       
+      // Headers (as provided)
       const headers = {
         'accept': '*/*',
         'accept-language': 'en-GB,en;q=0.6',
@@ -82,5 +88,4 @@ function embed(provider: { id: string; name: string; rank: number; serverName: s
   });
 }
 
-const xprimeScrapers = providers.map(embed);
-export default xprimeScrapers;
+export default providers.map(embed);
