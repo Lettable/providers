@@ -82,4 +82,5 @@ function embed(provider: { id: string; name: string; rank: number; serverName: s
   });
 }
 
-export default providers.map(embed);
+const xprimeScrapers = providers.map(embed);
+export default xprimeScrapers;
