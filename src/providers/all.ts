@@ -13,7 +13,7 @@ import { tugaflixScraper } from '@/providers/sources/tugaflix';
 import { vidsrcsuScraper } from '@/providers/sources/vidsrcsu';
 import { vidsrcScraper } from '@/providers/sources/vidsrc';
 import { hexawatchScraper } from '@/providers/sources/hexawatch';
-import { xprimeScrapers } from '@/providers/embeds/xprime';
+import xprimeScrapers from '@/providers/embeds/xprime';
 
 import {
   autoembedBengaliScraper,
