@@ -12,7 +12,7 @@ const providers = [
   },
   {
     id: 'server-11',
-    rank: 102,
+    rank: 103,
   },
   {
     id: 'server-7',
