@@ -6,7 +6,7 @@ import { createM3U8ProxyUrl } from '@/utils/proxy';
 export const viperScraper = makeEmbed({
   id: 'viper',
   name: 'Viper',
-  rank: 182,
+  rank: 184,
   async scrape(ctx) {
     const apiResponse = await ctx.proxiedFetcher.full<{
       source: string;
