@@ -89,7 +89,7 @@ export const vidjoyScraper = makeSourcerer({
   id: 'vidjoy',
   name: '☠️ Vidjoy',
   rank: 185,
-  disabled: true,
+  disabled: false,
   flags: [flags.CORS_ALLOWED],
   scrapeMovie: comboScraper,
 });
