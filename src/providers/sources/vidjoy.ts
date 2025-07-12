@@ -87,7 +87,7 @@ async function comboScraper(ctx: MovieScrapeContext): Promise<SourcererOutput> {
 
 export const vidjoyScraper = makeSourcerer({
   id: 'vidjoy',
-  name: 'Vidjoy',
+  name: '☠️ Vidjoy',
   rank: 185,
   disabled: true,
   flags: [flags.CORS_ALLOWED],
