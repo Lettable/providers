@@ -52,7 +52,7 @@ const providers = [
   },
   {
     id: 'server-14', // catflix? uwu.m3u8
-    rank: 22,
+    rank: 23,
   },
   {
     id: 'server-6',
