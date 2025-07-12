@@ -14,6 +14,36 @@ import { vidsrcsuScraper } from '@/providers/sources/vidsrcsu';
 import { vidsrcScraper } from '@/providers/sources/vidsrc';
 import { hexawatchScraper } from '@/providers/sources/hexawatch';
 import xprimeScrapers from '@/providers/embeds/xprime';
+import { vidjoyScraper } from '@/providers/sources/vidjoy';
+import { vidifyScraper } from '@/providers/sources/vidify';
+import { beechScraper } from '@/providers/sources/beech';
+import { spencerdevsScraper } from '@/providers/sources/speedstrm';
+
+import {
+  spencerdevsNgflixScraper,
+  spencerdevsUpcloudScraper,
+  spencerdevsAkcloudScraper,
+  spencerdevsMegacloudScraper,
+  spencerdevsHollymoviehd,
+  spencerdevsVidsrcScraper,
+  spencerdevsOnionflixerScraper,
+  spencerdevsSoaperScraper,
+} from './embed/speedstrm';
+
+import {
+  beechFaiaScraper, 
+  beechBucheScraper, 
+  beechEnglishScraper, 
+  beechHindiScraper,
+} from './embed/beech';
+
+import {
+  vidjoyStream1Scraper,
+  vidjoyStream2Scraper,
+  vidjoyStream3Scraper,
+  vidjoyStream4Scraper,
+  vidjoyStream5Scraper,
+} from './embed/vidjoy';
 
 import {
   autoembedBengaliScraper,
@@ -76,9 +106,12 @@ export function gatherAllSources(): Array<Sourcerer> {
   // all sources are gathered here
   return [
     cuevana3Scraper,
+    vidjoyScraper,
+    vidifyScraper,
     catflixScraper,
     ridooMoviesScraper,
     hdRezkaScraper,
+    beechScraper,
     warezcdnScraper,
     insertunitScraper,
     soaperTvScraper,
@@ -87,6 +120,7 @@ export function gatherAllSources(): Array<Sourcerer> {
     ee3Scraper,
     vidsrcScraper,
     hexawatchScraper,
+    spencerdevsScraper,
     fsharetvScraper,
     vidsrcsuScraper,
     mp4hydraScraper,
@@ -110,6 +144,23 @@ export function gatherAllEmbeds(): Array<Embed> {
   return [
     upcloudScraper,
     vidCloudScraper,
+    beechFaiaScraper, 
+    beechBucheScraper, 
+    beechEnglishScraper, 
+    vidjoyStream1Scraper,
+    vidjoyStream2Scraper,
+    vidjoyStream3Scraper,
+    vidjoyStream4Scraper,
+    vidjoyStream5Scraper,
+    beechHindiScraper,
+    spencerdevsNgflixScraper,
+    spencerdevsUpcloudScraper,
+    spencerdevsAkcloudScraper,
+    spencerdevsMegacloudScraper,
+    spencerdevsHollymoviehd,
+    spencerdevsVidsrcScraper,
+    spencerdevsOnionflixerScraper,
+    spencerdevsSoaperScraper,
     mixdropScraper,
     ridooScraper,
     closeLoadScraper,
