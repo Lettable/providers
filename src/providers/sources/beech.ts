@@ -85,7 +85,7 @@ async function comboScraper(ctx: MovieScrapeContext): Promise<SourcererOutput> {
 
 export const beechScraper = makeSourcerer({
   id: 'beech',
-  name: 'Beech',
+  name: '🐢 Beech',
   rank: 72,
   flags: [flags.CORS_ALLOWED],
   scrapeMovie: comboScraper,
