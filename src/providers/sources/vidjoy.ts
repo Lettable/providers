@@ -7,7 +7,7 @@ import { MovieScrapeContext } from '@/utils/context';
 import { NotFoundError } from '@/utils/errors';
 
 const baseUrl = 'https://vidjoy.pro';
-const decryptionKey = '79a74864fcc78f9db91671b98bee02eea22c410aa36825354922ce0f654caa4b';
+const decryptionKey = '029f3936fb744c4512e66d3a8150c6129472ccdff5b0dd5ec6e512fc06194ef1';
 
 async function comboScraper(ctx: MovieScrapeContext): Promise<SourcererOutput> {
   let apiUrl = `${baseUrl}/embed/api/fastfetch2/${ctx.media.tmdbId}?sr=0`;
