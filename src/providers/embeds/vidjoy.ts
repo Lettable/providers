@@ -7,7 +7,7 @@ const providers = [
   {
     id: 'vidjoy-stream1',
     name: 'Vidjoy 1',
-    rank: 110,
+    rank: 102,
   },
   {
     id: 'vidjoy-stream2',
