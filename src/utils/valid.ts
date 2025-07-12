@@ -7,6 +7,30 @@ import {
   streamwishSpanishScraper,
 } from '@/providers/embeds/streamwish';
 import { viperScraper } from '@/providers/embeds/viper';
+import { vidifyScraper } from '@/providers/sources/vidify';
+
+import {
+  beechFaiaScraper, beechBucheScraper, beechEnglishScraper, beechHindiScraper
+} from '@/providers/embeds/beech';
+
+import {  
+  vidjoyStream1Scraper,
+  vidjoyStream2Scraper,
+  vidjoyStream3Scraper,
+  vidjoyStream4Scraper,
+  vidjoyStream5Scraper,
+} from '@/providers/embeds/vidjoy';
+
+import {
+  spencerdevsNgflixScraper,
+  spencerdevsUpcloudScraper,
+  spencerdevsAkcloudScraper,
+  spencerdevsMegacloudScraper,
+  spencerdevsHollymoviehd,
+  spencerdevsVidsrcScraper,
+  spencerdevsOnionflixerScraper,
+  spencerdevsSoaperScraper,
+} from '@/providers/embeds/speedstrm';
 import { warezcdnembedMp4Scraper } from '@/providers/embeds/warezcdn/mp4';
 import { embedsuScraper } from '@/providers/sources/embedsu';
 import { soaperTvScraper } from '@/providers/sources/soapertv';
