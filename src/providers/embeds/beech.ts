@@ -4,7 +4,7 @@ import { makeEmbed } from '@/providers/base';
 const providers = [
   {
     id: 'beech-faia',
-    rank: 22,
+    rank: 23,
     name: 'Faia',
   },
   {
