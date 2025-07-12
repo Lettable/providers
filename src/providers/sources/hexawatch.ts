@@ -225,7 +225,7 @@ async function hexawatchScrape(
 // 🧠 Register it
 export const hexawatchScraper = makeSourcerer({
   id: "hexawatch",
-  name: "HexaWatch 🔐",
+  name: "☠️ HexaWatch",
   rank: 203,
   flags: [flags.CORS_ALLOWED],
   scrapeMovie: hexawatchScrape,
