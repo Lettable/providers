@@ -28,14 +28,14 @@ import {
   spencerdevsVidsrcScraper,
   spencerdevsOnionflixerScraper,
   spencerdevsSoaperScraper,
-} from './embed/speedstrm';
+} from './embeds/speedstrm';
 
 import {
   beechFaiaScraper, 
   beechBucheScraper, 
   beechEnglishScraper, 
   beechHindiScraper,
-} from './embed/beech';
+} from './embeds/beech';
 
 import {
   vidjoyStream1Scraper,
@@ -43,7 +43,7 @@ import {
   vidjoyStream3Scraper,
   vidjoyStream4Scraper,
   vidjoyStream5Scraper,
-} from './embed/vidjoy';
+} from './embeds/vidjoy';
 
 import {
   autoembedBengaliScraper,
