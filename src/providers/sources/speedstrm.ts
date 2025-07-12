@@ -41,7 +41,7 @@ async function comboScraper(ctx: ShowScrapeContext | MovieScrapeContext): Promis
 
 export const spencerdevsScraper = makeSourcerer({
   id: 'spencerdevs',
-  name: '🤝 SpeedStrm',
+  name: '☠️ SpeedStrm',
   rank: 240,
   flags: [flags.CORS_ALLOWED],
   scrapeMovie: comboScraper,
