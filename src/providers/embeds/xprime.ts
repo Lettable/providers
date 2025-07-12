@@ -2,20 +2,20 @@ import { flags } from '@/entrypoint/utils/targets';
 import { makeEmbed } from '@/providers/base';
 import { getValidQualityFromString } from '@/utils/quality';
 
-const serverNames = [
-  'primebox',
-  'phoenix',
-  'primenet',
-  'kraken',
-  'harbour',
-  'volkswagen',
-  'fendi',
+const serverNamesWithRanks: [string, number][] = [
+  ['primebox', 70],
+  ['phoenix', 71],
+  ['primenet', 69],
+  ['kraken', 68],
+  ['harbour', 73],
+  ['volkswagen', 67],
+  ['fendi', 74],
 ];
 
-const providers = serverNames.map((serverName) => ({
+const providers = serverNamesWithRanks.map(([serverName, rank]) => ({
   id: `xprime-${serverName}`,
   name: `xprime ${serverName}`,
-  rank: 70,
+  rank,
   serverName,
 }));
 
