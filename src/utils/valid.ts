@@ -13,6 +13,13 @@ import {
   beechFaiaScraper, beechBucheScraper, beechEnglishScraper, beechHindiScraper
 } from '@/providers/embeds/beech';
 
+import {
+  himerHindiScraper,
+  himerBengaliScraper,
+  himerTamilScraper,
+  himerTeluguScraper,
+} from "@/providers/embeds/himer";
+
 import {  
   vidjoyStream1Scraper,
   vidjoyStream2Scraper,
@@ -55,6 +62,10 @@ const SKIP_VALIDATION_CHECK_IDS = [
   spencerdevsOnionflixerScraper.id,
   spencerdevsSoaperScraper.id,
   vidifyScraper.id,
+  himerHindiScraper,
+  himerBengaliScraper,
+  himerTamilScraper,
+  himerTeluguScraper,
   beechFaiaScraper.id,
   beechBucheScraper.id,
   vidjoyStream1Scraper.id,
