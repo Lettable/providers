@@ -37,7 +37,7 @@ function createHimerEmbed(language: {
 }) {
   return makeEmbed({
     id: language.id,
-    name: `Himer365ery (${language.name})`,
+    name: `🌩 Lala Dubbed (${language.name})`,
     rank: language.rank,
     async scrape(ctx) {
       const url = new URL(ctx.url);
