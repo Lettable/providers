@@ -47,18 +47,17 @@ async function comboScraper(
   imdbId = await getImdbIdFromTmdb(tmdbId);
 
   const playerPageUrl = `https://himer365ery.com/play/${imdbId}`;
-  console.log(playerPageUrl);
   const playerPageResponse = await ctx.proxiedFetcher(playerPageUrl, {
     headers: {
       referer: "https://allmovieland.ac/",
     },
   });
-
   const scriptRegex = /let pc = ({.*?});/s;
   const scriptMatch = playerPageResponse.match(scriptRegex);
 
   if (!scriptMatch) {
-    throw new Error("Could not find player config in response");
+    throw new Error(`Could not find player config in response.\nSnippet:\n${playerPageResponse}`);
+
   }
 
   const playerConfig: HimerPlayerConfig = JSON.parse(scriptMatch[1]);
