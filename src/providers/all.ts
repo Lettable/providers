@@ -18,7 +18,7 @@ import { vidjoyScraper } from '@/providers/sources/vidjoy';
 import { vidifyScraper } from '@/providers/sources/vidify';
 import { beechScraper } from '@/providers/sources/beech';
 import { spencerdevsScraper } from '@/providers/sources/speedstrm';
-
+import { himer365eryScraper } from "@/providers/sources/himer";
 import {
   spencerdevsNgflixScraper,
   spencerdevsUpcloudScraper,
@@ -36,6 +36,13 @@ import {
   beechEnglishScraper, 
   beechHindiScraper,
 } from './embeds/beech';
+
+import {
+  himerHindiScraper,
+  himerBengaliScraper,
+  himerTamilScraper,
+  himerTeluguScraper,
+} from "./embeds/himer";
 
 import {
   vidjoyStream1Scraper,
@@ -107,6 +114,7 @@ export function gatherAllSources(): Array<Sourcerer> {
   return [
     cuevana3Scraper,
     vidjoyScraper,
+    himer365eryScraper,
     vidifyScraper,
     catflixScraper,
     ridooMoviesScraper,
@@ -145,8 +153,12 @@ export function gatherAllEmbeds(): Array<Embed> {
     upcloudScraper,
     vidCloudScraper,
     beechFaiaScraper, 
-    beechBucheScraper, 
-    beechEnglishScraper, 
+    beechBucheScraper,
+    beechEnglishScraper,
+    himerHindiScraper,
+    himerBengaliScraper,
+    himerTamilScraper,
+    himerTeluguScraper,
     vidjoyStream1Scraper,
     vidjoyStream2Scraper,
     vidjoyStream3Scraper,
